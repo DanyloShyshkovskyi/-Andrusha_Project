@@ -3,6 +3,7 @@ import ParallaxMousemove from './Mouse';
 import Account from "./Authorization/Account";
 import Comments from "./Comments/Index";
 import Ingridients from "./Ingridients/Index"
+import AddCocktail from "./AddCocktail/index"
 
 import "./App.css";
 
@@ -30,7 +31,7 @@ export default class MyTry extends React.Component{
       <div className="wrapper">
   
       <div className="content">
-        <div className="tagline">Find your Cocktail</div>
+        <div className="tagline"><AddCocktail/></div>
   
         <div className="pages"><Comments/></div>
   
