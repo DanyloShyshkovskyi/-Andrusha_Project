@@ -1,5 +1,5 @@
 import React from "react";
-
+import Api from '../services/Api';
 import "./style.css";
 
 export default class Style extends React.Component{
@@ -7,8 +7,33 @@ export default class Style extends React.Component{
         super(props);
         this.state = {
             container: "container",
+            token:null,
+            login:"",
+            password:"",
         };
+        this.handleLoginChange = this.handleLoginChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
       }
+
+      handleLoginChange(event){
+          this.setState({login:event.target.value});
+      }
+
+      handlePasswordChange(event){
+        this.setState({password:event.target.value});
+    }
+
+      onAuthClick = async () => {
+        const data = await Api.post('auth', { login: "esenin", password: "password" });
+        const { data: json } = data;
+    
+        console.log(json);
+        this.setState({token:json.token});
+        console.log(this.state.token);
+        console.log("login: ",this.state.login);
+        console.log("password: ",this.state.password)
+      };
+
       onClickAdd = () => {
           console.log(this.state.container);
         this.setState({
@@ -24,6 +49,7 @@ export default class Style extends React.Component{
 
     
   render(){
+      
       return ( 
           <div className="bodycontainer">
         <div className={this.state.container} id="container">
@@ -41,10 +67,10 @@ export default class Style extends React.Component{
                 <form action="#">
                     <h1 >Sign in</h1>
                     <span>or use your account</span>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
+                    <input onChange={this.handleLoginChange} type="email" placeholder="Email" />
+                    <input onChange={this.handlePasswordChange} type="password" placeholder="Password" />
                     <a href="#">Forgot your password?</a>
-                    <button>Sign In</button>
+                    <button onClick={this.onAuthClick}>Sign In</button>
                 </form>
             </div>
             <div class="overlay-container">

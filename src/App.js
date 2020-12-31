@@ -6,7 +6,6 @@ import Header from "./Header"
 import MyTry from "./MyTry"
 import Mwindow from "./Authorization/Account"
 import HZ from "./Slider/Style"
-import ListUserComponent from "./ListUserComponent"
 
 function App() {
   return (
